@@ -2,21 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <title>Magnet Linker</title>
     <script language="JavaScript">
         function ready() {
-            var hash = window.location.toString().match(/[0-9,A-Z]{40}/i);
+            var hash = window.location.toString().match(/[0-9,A-F]{40}/i);
             if ((hash != null) && (hash.length == 1)) {
-                hash = hash[0];
-                var a = document.getElementById('magnet_link');
-                a.href = "magnet:?xt=urn:btih:" + hash;
-                a.text = a.href;
+                hash = 'magnet:?xt=urn:btih:' + hash[0];
+                var msg = document.getElementById('msg');
+                msg.innerHTML = '<a class="btn btn-default" href="'+hash+'" style="width:100%"><span class="glyphicon glyphicon glyphicon-magnet" aria-hidden="true"></span> ' + hash;
             }
         }
         document.addEventListener("DOMContentLoaded", ready);
     </script>
 </head>
 <body>
-    <div class="link_block"><a id="magnet_link">Something Wromg!</a></div>
-</body>
+    <div style="margin-left:calc(50% - 20em);margin-top:3em;padding:1em;height:8em;width:44em">
+        <div class="well" >
+            <div id="msg">
+                <div class="alert alert-danger" role="alert" style="width:100%">
+                    <span class="glyphicon glyphicon-alert aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span> Something Wrong!</span>
+                </div>    
+            </div>        
+        </div>    
+        <p>This site did not do anything without copy the hash from address line to the link above!</p>    
+    </div>
+ </body>
 </html>
